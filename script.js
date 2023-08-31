@@ -1,6 +1,7 @@
 const loadDetails = async (isShowAll) => {
   const res = await fetch("https://openapi.programming-hero.com/api/ai/tools");
   const data = await res.json();
+  document.getElementById("loading-spinner").classList.add("hidden");
   displayData(data.data.tools, isShowAll);
 };
 
@@ -46,11 +47,15 @@ const displayData = (data, isShowAll) => {
     div.innerHTML = card;
     cardContainer.appendChild(div);
   });
+  isShowAll
+    ? document.getElementById("show-all-btn").classList.add("hidden")
+    : document.getElementById("show-all-btn").classList.remove("hidden");
+    if(isShowAll) document.getElementById("loading-spinner2").classList.add("hidden");
 };
 
 const handleShowAll = () => {
+  document.getElementById("loading-spinner2").classList.remove("hidden");
   loadDetails(true);
-  document.getElementById("showAllBtn").classList.add("hidden");
 };
 
-loadDetails();
+loadDetails(false);

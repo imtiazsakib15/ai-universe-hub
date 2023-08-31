@@ -17,21 +17,31 @@
       <div class="font-semibold text-center mt-14">
         <h1 class="text-5xl">AI Universe Hub</h1>
         <button
-          class="text-xl bg-[#EB5757] text-white rounded-lg px-7 py-5 mt-8"
+          class="text-xl bg-[#EB5757] text-white rounded-2xl px-7 py-5 mt-8"
         >
           Sort By Date
         </button>
       </div>
-      
+      <!-- Loading Spinner -->
+      <span
+        id="loading-spinner"
+        class="loading loading-dots loading-lg mx-auto block mt-80"
+      ></span>
       <!-- Cards -->
       <div
         id="card-container"
         class="grid lg:grid-cols-3 md:grid-cols-2 gap-5 p-12"
       ></div>
+      <!-- Loading Spinner 2-->
+      <span
+        id="loading-spinner2"
+        class="loading loading-dots loading-lg mx-auto block mt-20 hidden"
+      ></span>
       <!-- Show All Button -->
       <button
-        onclick="handleShowAll()" id="showAllBtn"
-        class="text-xl bg-[#EB5757] font-semibold text-white mx-auto block rounded-lg px-7 py-5 mb-8"
+        onclick="handleShowAll()"
+        id="show-all-btn"
+        class="text-xl bg-[#EB5757] font-semibold text-white mx-auto block rounded-2xl px-7 py-5 mb-8 hidden"
       >
         Show All
       </button>
