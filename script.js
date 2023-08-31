@@ -1,12 +1,13 @@
-const loadDetails = async () => {
+const loadDetails = async (isShowAll) => {
   const res = await fetch("https://openapi.programming-hero.com/api/ai/tools");
   const data = await res.json();
-  displayData(data.data.tools);
+  displayData(data.data.tools, isShowAll);
 };
 
-const displayData = (data) => {
+const displayData = (data, isShowAll) => {
   const cardContainer = document.getElementById("card-container");
-  //   cardContainer.innerHTML = "";
+  cardContainer.innerHTML = "";
+  if (!isShowAll) data = data.slice(0, 6);
   data.forEach((item) => {
     const div = document.createElement("div");
     const card = `
@@ -14,12 +15,12 @@ const displayData = (data) => {
         <img class="rounded-2xl my-6 h-80" src="${item.image}" alt="" />
         <div class="mt-6 divide-y-2">
             <div class="pb-3">
-                <h3 class="text-2xl font-semibold">Features</h3>
-                <div class="py-4">bkjl</div>
+                <h3 class="text-2xl font-bold">Features</h3>
+                <div class="py-4">Features 1, 2, 3, ........</div>
             </div>
             <div class="flex justify-between items-center py-6">
                 <div>
-                    <h3 class="text-2xl font-semibold">${item.name}</h3>
+                    <h3 class="text-2xl font-bold">${item.name}</h3>
                     <div class="flex mt-6">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none">
@@ -45,7 +46,11 @@ const displayData = (data) => {
     div.innerHTML = card;
     cardContainer.appendChild(div);
   });
-  console.log(data);
+};
+
+const handleShowAll = () => {
+  loadDetails(true);
+  document.getElementById("showAllBtn").classList.add("hidden");
 };
 
 loadDetails();
